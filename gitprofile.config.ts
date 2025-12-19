@@ -14,7 +14,7 @@ const CONFIG = {
     github: {
       display: true, // Display GitHub projects?
       header: 'Github Projects',
-      mode: 'automatic', // Mode can be: 'automatic' or 'manual'
+      mode: 'manual', // Mode can be: 'automatic' or 'manual'
       automatic: {
         sortBy: 'stars', // Sort projects by 'stars' or 'updated'
         limit: 8, // How many projects to display.
@@ -25,33 +25,26 @@ const CONFIG = {
       },
       manual: {
         // Properties for manually specifying projects
-        projects: ['arifszn/gitprofile', 'arifszn/pandora'], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
+        projects: [
+          'suguslove10/finance-me-microservice',
+          'suguslove10/MERN-docker-compose',
+          'suguslove10/cloud-migration-planner',
+          'suguslove10/cloud-migration-strategy-planner',
+        ], // List of repository names to display.
       },
     },
     external: {
-      header: 'My Projects',
+      header: 'Special Projects',
       // To hide the `External Projects` section, keep it empty.
-      projects: [
-        {
-          title: 'Project Name',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut.',
-          imageUrl:
-            'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
-          link: 'https://example.com',
-        },
-        {
-          title: 'Project Name',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut.',
-          imageUrl:
-            'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
-          link: 'https://example.com',
-        },
-      ],
+      projects: [],
     },
   },
-  seo: { title: 'Portfolio of Suguresh - Cloud Engineer & DevOps Specialist', description: 'Cloud Engineer specializing in AWS, DevOps, and containerization technologies. Experienced in CI/CD pipelines, infrastructure automation, and cloud architecture.', imageURL: '' },
+  seo: {
+    title: 'Portfolio of Suguresh - Associate Cloud Engineer',
+    description:
+      'Associate Cloud Engineer specializing in AWS, DevOps, and infrastructure automation. Experienced in CI/CD pipelines (Jenkins, GitHub Actions), containerization (Docker, Kubernetes), and IaC (Terraform).',
+    imageURL: '',
+  },
   social: {
     linkedin: 'suguresh',
     x: '',
@@ -75,7 +68,7 @@ const CONFIG = {
     email: 'sugugalag@gmail.com',
   },
   resume: {
-    fileUrl: '', // Add your resume PDF link here when available
+    fileUrl: 'https://drive.google.com/file/d/1nXqtiGWIGeYV-CmuGWppcxcY58vz2FDc/view?usp=sharing', // Add your resume PDF link here when available
   },
   skills: [
     'AWS',
@@ -110,6 +103,7 @@ const CONFIG = {
       from: 'May 2025',
       to: 'Present',
       companyLink: '',
+      description: '• Monitor cloud infrastructure using AWS CloudWatch, Prometheus, and Grafana.\n• Deploy applications via CI/CD pipelines (GitHub Actions, Jenkins).\n• Manage Docker images and EKS services.\n• Automate infrastructure using Terraform and CloudFormation.',
     },
     {
       company: 'F13 Technologies',
@@ -117,6 +111,7 @@ const CONFIG = {
       from: 'October 2024',
       to: 'January 2025',
       companyLink: '',
+      description: '• Architected solutions using EC2, S3, Lambda, and DynamoDB.\n• Developed a Service Recommendation System (SRS) for cost optimization.\n• Implemented HRMS solution with AWS Lambda and Cognito.',
     },
   ],
   certifications: [
@@ -166,7 +161,7 @@ const CONFIG = {
   // Track visitor interaction and behavior. https://www.hotjar.com
   hotjar: { id: '', snippetVersion: 6 },
   themeConfig: {
-    defaultTheme: 'nord',
+    defaultTheme: 'premium',
 
     // Hides the switch in the navbar
     // Useful if you want to support a single color mode
