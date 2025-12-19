@@ -284,6 +284,17 @@ interface Blog {
   limit?: number;
 }
 
+interface Service {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+interface Services {
+  header: string;
+  services: Service[];
+}
+
 interface ThemeConfig {
   /**
    * Default theme
@@ -391,6 +402,11 @@ interface Config {
    * Custom footer
    */
   footer?: string;
+
+  /**
+   * Services config
+   */
+  services?: Services;
 
   /**
    * Enable PWA
