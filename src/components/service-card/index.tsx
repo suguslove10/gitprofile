@@ -1,6 +1,26 @@
 import { SanitizedService } from '../../interfaces/sanitized-config';
 import { skeleton } from '../../utils';
-import * as SiIcons from 'react-icons/si';
+import {
+    SiAmazonwebservices,
+    SiTerraform,
+    SiKubernetes,
+    SiGrafana,
+    SiDocker,
+    SiAnsible,
+    SiPrometheus,
+    SiGooglecloud
+} from 'react-icons/si';
+
+const iconMap: { [key: string]: React.ElementType } = {
+    SiAmazonwebservices,
+    SiTerraform,
+    SiKubernetes,
+    SiGrafana,
+    SiDocker,
+    SiAnsible,
+    SiPrometheus,
+    SiGooglecloud,
+};
 
 const ServiceCard = ({
     loading,
@@ -46,8 +66,7 @@ const ServiceCard = ({
                     {loading
                         ? renderSkeleton()
                         : services.map((service, index) => {
-                            // @ts-ignore
-                            const Icon = SiIcons[service.icon];
+                            const Icon = service.icon ? iconMap[service.icon] : null;
                             return (
                                 <div key={index} className="card shadow-lg bg-base-100 ServiceCard">
                                     <div className="card-body p-6 flex flex-row items-start gap-4">
