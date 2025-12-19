@@ -101,6 +101,17 @@ export interface SanitizedPublication {
   description?: string;
 }
 
+export interface SanitizedService {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface SanitizedServices {
+  header: string;
+  services: SanitizedService[];
+}
+
 export interface SanitizedGoogleAnalytics {
   id?: string;
 }
@@ -140,6 +151,7 @@ export interface SanitizedConfig {
   hotjar: SanitizedHotjar;
   blog: SanitizedBlog;
   themeConfig: SanitizedThemeConfig;
+  services?: SanitizedServices;
   footer?: string;
   enablePWA: boolean;
 }

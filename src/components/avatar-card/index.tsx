@@ -25,7 +25,7 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
   resumeFileUrl,
 }): React.JSX.Element => {
   return (
-    <div className="card shadow-lg card-sm bg-base-100">
+    <div className="card shadow-lg card-sm bg-base-100 floating">
       <div className="grid place-items-center py-8">
         {loading || !profile ? (
           <div className="avatar opacity-90">
@@ -40,11 +40,10 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
         ) : (
           <div className="avatar opacity-90">
             <div
-              className={`mb-8 rounded-full w-32 h-32 ${
-                avatarRing
-                  ? 'ring-3 ring-primary ring-offset-base-100 ring-offset-2'
-                  : ''
-              }`}
+              className={`mb-8 rounded-full w-32 h-32 ${avatarRing
+                ? 'ring-3 ring-primary ring-offset-base-100 ring-offset-2'
+                : ''
+                }`}
             >
               {
                 <LazyImage
@@ -61,6 +60,14 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
           </div>
         )}
         <div className="text-center mx-auto px-8">
+          {loading || !profile ? (
+            skeleton({ widthCls: 'w-24', heightCls: 'h-6', className: 'mx-auto mb-2' })
+          ) : (
+            <div className="badge badge-success badge-outline gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+              Available for Work
+            </div>
+          )}
           <h5 className="font-bold text-2xl">
             {loading || !profile ? (
               skeleton({ widthCls: 'w-48', heightCls: 'h-8' })
@@ -70,10 +77,28 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
               </span>
             )}
           </h5>
-          <div className="mt-3 text-base-content font-mono">
+          <div className="mt-2 text-primary font-bold text-sm">
+            {loading || !profile ? skeleton({ widthCls: 'w-32', heightCls: 'h-4' }) : 'Cloud Engineer & DevOps Specialist'}
+          </div>
+          <div className="mt-3 text-base-content opacity-70 text-sm italic">
             {loading || !profile
               ? skeleton({ widthCls: 'w-48', heightCls: 'h-5' })
               : profile.bio}
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2 items-center text-sm opacity-60">
+            {loading || !profile ? (
+              skeleton({ widthCls: 'w-40', heightCls: 'h-10' })
+            ) : (
+              <>
+                <div className="flex items-center gap-2">
+                  <span className="text-primary font-bold">📍</span> {profile.location || 'Bangalore, India'}
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-primary font-bold">✉️</span> sugugalag@gmail.com
+                </div>
+              </>
+            )}
           </div>
         </div>
         {resumeFileUrl &&
@@ -85,7 +110,7 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
             <a
               href={resumeFileUrl}
               target="_blank"
-              className="btn btn-outline btn-sm text-xs mt-6 opacity-50"
+              className="btn btn-primary btn-sm text-xs mt-6 px-6"
               download
               rel="noreferrer"
             >

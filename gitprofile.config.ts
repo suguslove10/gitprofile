@@ -216,12 +216,45 @@ const CONFIG = {
   },
 
   // Optional Footer. Supports plain text or HTML.
-  footer: `Made with <a 
-      class="text-primary" href=""
-      target="_blank"
-      rel="noreferrer"
-    >GitProfile</a> and ❤️ by Suguresh`,
+  footer: `
+    <div class="status-bar">
+      <span class="status-dot"></span>
+      <span>All systems are operational</span>
+      <span class="status-divider">.</span>
+      <a class="status-link" href="#status" rel="noreferrer">Status</a>
+      <span class="status-divider">.</span>
+      <a class="status-link" href="#uptime" rel="noreferrer">Uptime</a>
+    </div>
+    <div class="opacity-50 text-xs mt-2">
+      Made with <a class="text-primary" href="https://github.com/arifszn/gitprofile" target="_blank" rel="noreferrer">GitProfile</a> and ❤️ by Suguresh
+    </div>
+  `,
 
+  services: {
+    header: 'What I\'m Doing',
+    services: [
+      {
+        title: 'Cloud Infrastructure',
+        description: 'Architecting and managing scalable, secure cloud environments on AWS, Azure, and GCP using best practices.',
+        icon: 'SiAmazonwebservices',
+      },
+      {
+        title: 'DevOps & Automation',
+        description: 'Building robust CI/CD pipelines and automating infrastructure using Terraform and Ansible to accelerate delivery.',
+        icon: 'SiTerraform',
+      },
+      {
+        title: 'Containerization',
+        description: 'Deploying and orchestrating microservices with Docker and Kubernetes for high availability and scalability.',
+        icon: 'SiKubernetes',
+      },
+      {
+        title: 'Monitoring & SRE',
+        description: 'Implementing full-stack observability with Prometheus, Grafana, and CloudWatch to ensure system reliability.',
+        icon: 'SiGrafana',
+      },
+    ],
+  },
   enablePWA: true,
 };
 

@@ -126,6 +126,10 @@ export const getSanitizedConfig = (
         displayAvatarRing: config?.themeConfig?.displayAvatarRing ?? true,
         themes: config?.themeConfig?.themes || DEFAULT_THEMES,
       },
+      services: {
+        header: config?.services?.header || 'What I\'m Doing',
+        services: config?.services?.services || [],
+      },
       footer: config?.footer,
       enablePWA: config?.enablePWA ?? true,
     };
