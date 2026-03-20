@@ -1,32 +1,559 @@
- <!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%- metaTitle %></title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Suguresh — Cloud & DevOps Engineer specializing in AWS, Kubernetes, Terraform, and CI/CD automation." />
+  <meta name="keywords" content="Cloud Engineer, DevOps, AWS, Kubernetes, Terraform, Docker, Jenkins, Prometheus, Grafana, EKS, ArgoCD" />
+  <meta name="author" content="Suguresh" />
+  <meta name="robots" content="index, follow" />
 
-    <meta property="title" content="<%- metaTitle %>" />
-    <meta name="description" content="<%- metaDescription %>" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Suguresh | Cloud & DevOps Engineer" />
+  <meta property="og:description" content="Building infrastructure that doesn't break at 3AM. AWS · Kubernetes · Terraform · CI/CD." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://suguslove10.github.io" />
 
-    <meta itemprop="name" content="<%- metaTitle %>" />
-    <meta itemprop="description" content="<%- metaDescription %>" />
-    <meta itemprop="image" content="<%- metaImageURL %>" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Suguresh | Cloud & DevOps Engineer" />
+  <meta name="twitter:description" content="Building infrastructure that doesn't break at 3AM." />
 
-    <meta property="og:title" content="<%- metaTitle %>" />
-    <meta property="og:description" content="<%- metaDescription %>" />
-    <meta property="og:image" content="<%- metaImageURL %>" />
-    <meta property="og:image:secure_url" content="<%- metaImageURL %>" />
+  <title>Suguresh | Cloud & DevOps Engineer</title>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="<%- metaTitle %>" />
-    <meta name="twitter:description" content="<%- metaDescription %>" />
-    <meta name="twitter:image" content="<%- metaImageURL %>" />
-    <%- googleAnalyticsScript %>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Devicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="lb">&lt;</span>Sugu<span class="lb">/&gt;</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#stack" class="nav-link">Stack</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#certs" class="nav-link">Certs</a></li>
+        <li><a href="#journey" class="nav-link">Journey</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="#" class="btn-resume" id="navResume">Resume</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="home">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="open-badge">
+          <span class="pulse-dot"></span>
+          Open to Work
+        </div>
+        <h1 class="hero-title">
+          I Build Infrastructure<br />
+          <span class="gradient-text">That Doesn't Break</span><br />
+          at <span class="accent-3am">3AM</span>
+        </h1>
+        <div class="hero-sub">
+          I'm a&nbsp;<span id="typewriter" class="tw-text"></span><span class="tw-cursor">|</span>
+        </div>
+        <p class="hero-desc">
+          Architecting cloud-native systems on AWS &nbsp;·&nbsp; Automating delivery with Terraform &amp; GitHub Actions &nbsp;·&nbsp; Running Kubernetes clusters that actually scale
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn-primary">
+            <i class="fas fa-terminal"></i> View My Work
+          </a>
+          <a href="#" class="btn-secondary" id="resumeDownload">
+            <i class="fas fa-file-arrow-down"></i> Download Resume
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num"><span data-target="10">0</span>+</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <div class="stat-num"><span data-target="3">0</span>+</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <div class="stat-num"><span data-target="1">0</span>+</div>
+            <div class="stat-label">Years Exp</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="sec-label fade-up">// about.me</div>
+      <h2 class="sec-title fade-up">Who Am I?</h2>
+      <div class="about-grid">
+        <div class="about-left fade-up">
+          <p class="about-p">
+            I'm <strong>Suguresh (Sugu)</strong>, a Cloud &amp; DevOps Engineer who believes that great
+            infrastructure is invisible — it just works. I specialize in building cloud-native systems
+            on AWS, automating the entire delivery pipeline, and making Kubernetes clusters behave under
+            real-world load.
+          </p>
+          <p class="about-p">
+            Currently at <span class="text-blue"><strong>Seabed2Crest</strong></span>, I architect and
+            automate the infrastructure teams rely on every day. My engineering philosophy:
+            <em class="text-cyan">automate it once, trust it always.</em>
+          </p>
+          <div class="learning-badge">
+            <i class="fas fa-bolt"></i>
+            Currently studying: <strong>AWS Solutions Architect Associate</strong>
+          </div>
+          <div class="about-pills">
+            <a href="https://github.com/suguslove10" target="_blank" class="pill">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="#" target="_blank" class="pill">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="mailto:suguresh@email.com" class="pill">
+              <i class="fas fa-envelope"></i> Email
+            </a>
+          </div>
+        </div>
+        <div class="about-right fade-up">
+          <div class="terminal">
+            <div class="term-bar">
+              <span class="tb-dot" style="background:#ff5f57"></span>
+              <span class="tb-dot" style="background:#febc2e"></span>
+              <span class="tb-dot" style="background:#28c840"></span>
+              <span class="term-title">sugu@aws-cloud:~$</span>
+            </div>
+            <div class="term-body">
+              <div class="t-row"><span class="t-p">❯</span><span class="t-c"> whoami</span></div>
+              <div class="t-o">Cloud &amp; DevOps Engineer</div>
+              <br />
+              <div class="t-row"><span class="t-p">❯</span><span class="t-c"> cat skills.yaml</span></div>
+              <div class="t-o"><span class="t-k">cloud:</span> <span class="t-v">AWS, GCP</span></div>
+              <div class="t-o"><span class="t-k">containers:</span> <span class="t-v">Docker, Kubernetes</span></div>
+              <div class="t-o"><span class="t-k">iac:</span> <span class="t-v">Terraform</span></div>
+              <div class="t-o"><span class="t-k">cicd:</span> <span class="t-v">GitHub Actions, ArgoCD</span></div>
+              <div class="t-o"><span class="t-k">monitoring:</span> <span class="t-v">Prometheus, Grafana</span></div>
+              <br />
+              <div class="t-row"><span class="t-p">❯</span><span class="t-c"> echo $STATUS</span></div>
+              <div class="t-o t-green">Open to full-time roles ✓</div>
+              <div class="t-row"><span class="t-p">❯</span><span class="t-cursor-blink">█</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TECH STACK ═══════════════════ -->
+  <section class="section section-grid" id="stack">
+    <div class="container">
+      <div class="sec-label fade-up">// tech.stack</div>
+      <h2 class="sec-title fade-up">My Arsenal</h2>
+      <p class="sec-sub fade-up">Tools I use to build, automate, and monitor cloud infrastructure at scale</p>
+
+      <div class="stack-grid">
+
+        <div class="stack-cat fade-up">
+          <div class="cat-hd"><i class="fas fa-cloud"></i> Cloud Platforms</div>
+          <div class="chips">
+            <div class="chip" data-tip="Amazon Web Services"><i class="devicon-amazonwebservices-original colored"></i><span>AWS</span></div>
+            <div class="chip" data-tip="Google Cloud Platform"><i class="devicon-googlecloud-plain colored"></i><span>GCP</span></div>
+            <div class="chip" data-tip="Amazon EC2"><i class="fas fa-server" style="color:#ff9900"></i><span>EC2</span></div>
+            <div class="chip" data-tip="Amazon EKS"><i class="fas fa-dharmachakra" style="color:#326ce5"></i><span>EKS</span></div>
+            <div class="chip" data-tip="Amazon S3"><i class="fas fa-database" style="color:#3f8624"></i><span>S3</span></div>
+            <div class="chip" data-tip="AWS VPC"><i class="fas fa-network-wired" style="color:#ff9900"></i><span>VPC</span></div>
+            <div class="chip" data-tip="AWS CloudWatch"><i class="fas fa-eye" style="color:#ff9900"></i><span>CloudWatch</span></div>
+            <div class="chip" data-tip="AWS Route53"><i class="fas fa-route" style="color:#ff9900"></i><span>Route53</span></div>
+          </div>
+        </div>
+
+        <div class="stack-cat fade-up">
+          <div class="cat-hd"><i class="fas fa-cubes"></i> Containers &amp; Orchestration</div>
+          <div class="chips">
+            <div class="chip" data-tip="Docker"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
+            <div class="chip" data-tip="Kubernetes"><i class="devicon-kubernetes-plain colored"></i><span>Kubernetes</span></div>
+            <div class="chip" data-tip="Helm Charts"><i class="fas fa-anchor" style="color:#0f1689"></i><span>Helm</span></div>
+            <div class="chip" data-tip="ArgoCD GitOps"><i class="fas fa-circle-nodes" style="color:#ef7b4d"></i><span>ArgoCD</span></div>
+          </div>
+        </div>
+
+        <div class="stack-cat fade-up">
+          <div class="cat-hd"><i class="fas fa-code-branch"></i> Infrastructure as Code</div>
+          <div class="chips">
+            <div class="chip" data-tip="Terraform"><i class="devicon-terraform-plain colored"></i><span>Terraform</span></div>
+            <div class="chip" data-tip="Ansible"><i class="fas fa-cogs" style="color:#ee0000"></i><span>Ansible</span></div>
+            <div class="chip" data-tip="YAML Config"><i class="fas fa-file-code" style="color:#00b4ff"></i><span>YAML</span></div>
+          </div>
+        </div>
+
+        <div class="stack-cat fade-up">
+          <div class="cat-hd"><i class="fas fa-rotate"></i> CI / CD</div>
+          <div class="chips">
+            <div class="chip" data-tip="GitHub Actions"><i class="devicon-github-original" style="color:#e8f0fe"></i><span>GitHub Actions</span></div>
+            <div class="chip" data-tip="Jenkins"><i class="devicon-jenkins-plain colored"></i><span>Jenkins</span></div>
+            <div class="chip" data-tip="ArgoCD GitOps"><i class="fas fa-infinity" style="color:#ef7b4d"></i><span>ArgoCD</span></div>
+          </div>
+        </div>
+
+        <div class="stack-cat fade-up">
+          <div class="cat-hd"><i class="fas fa-chart-line"></i> Monitoring &amp; Observability</div>
+          <div class="chips">
+            <div class="chip" data-tip="Prometheus"><i class="fas fa-fire" style="color:#e6522c"></i><span>Prometheus</span></div>
+            <div class="chip" data-tip="Grafana"><i class="fas fa-chart-bar" style="color:#f46800"></i><span>Grafana</span></div>
+            <div class="chip" data-tip="AlertManager"><i class="fas fa-bell" style="color:#e6522c"></i><span>AlertManager</span></div>
+            <div class="chip" data-tip="AWS CloudWatch"><i class="fas fa-eye" style="color:#ff9900"></i><span>CloudWatch</span></div>
+          </div>
+        </div>
+
+        <div class="stack-cat fade-up">
+          <div class="cat-hd"><i class="fas fa-terminal"></i> Languages &amp; OS</div>
+          <div class="chips">
+            <div class="chip" data-tip="Python"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+            <div class="chip" data-tip="Bash Scripting"><i class="fas fa-dollar-sign" style="color:#4eaa25"></i><span>Bash</span></div>
+            <div class="chip" data-tip="Linux Systems"><i class="devicon-linux-plain" style="color:#e8f0fe"></i><span>Linux</span></div>
+            <div class="chip" data-tip="Git Version Control"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROJECTS ═══════════════════ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="sec-label fade-up">// ./projects</div>
+      <h2 class="sec-title fade-up">What I've Built</h2>
+      <p class="sec-sub fade-up">Real problems. Real infrastructure. Real impact.</p>
+
+      <div class="projects-grid">
+
+        <div class="proj-card fade-up">
+          <div class="proj-top">
+            <div class="proj-ico"><i class="fas fa-dharmachakra"></i></div>
+            <a href="https://github.com/suguslove10" target="_blank" class="proj-gh-link"><i class="fab fa-github"></i></a>
+          </div>
+          <h3 class="proj-title">Production EKS Cluster on AWS</h3>
+          <div class="proj-problem">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span><strong>Problem:</strong> Needed production-grade container orchestration with auto-scaling, zero-downtime deployments, and GitOps-driven delivery.</span>
+          </div>
+          <p class="proj-desc">Architected a multi-AZ Amazon EKS cluster using Terraform modules. Integrated ArgoCD for GitOps continuous delivery, configured HPA/VPA for dynamic workload scaling, and set up AWS ALB Ingress Controller for intelligent traffic routing.</p>
+          <div class="proj-outcome">
+            <i class="fas fa-chart-line"></i>
+            <span>99.9% uptime · 40% cost reduction via right-sizing · Zero-downtime rolling updates</span>
+          </div>
+          <div class="proj-tags">
+            <span class="tag">AWS EKS</span><span class="tag">Terraform</span><span class="tag">ArgoCD</span>
+            <span class="tag">Helm</span><span class="tag">HPA/VPA</span><span class="tag">ALB</span>
+          </div>
+        </div>
+
+        <div class="proj-card fade-up">
+          <div class="proj-top">
+            <div class="proj-ico"><i class="fas fa-infinity"></i></div>
+            <a href="https://github.com/suguslove10" target="_blank" class="proj-gh-link"><i class="fab fa-github"></i></a>
+          </div>
+          <h3 class="proj-title">Zero-Downtime CI/CD Pipeline</h3>
+          <div class="proj-problem">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span><strong>Problem:</strong> Manual deployments taking 2+ hours, causing downtime windows and environment inconsistencies.</span>
+          </div>
+          <p class="proj-desc">Built a fully automated CI/CD pipeline with GitHub Actions. Stages: lint → test → Docker build → ECR push → EKS rolling update → smoke test → Slack notification. Blue/Green deployment strategy eliminates all downtime windows.</p>
+          <div class="proj-outcome">
+            <i class="fas fa-bolt"></i>
+            <span>Deploy time: 2 hrs → 8 min · 100% automated · Blue/Green strategy</span>
+          </div>
+          <div class="proj-tags">
+            <span class="tag">GitHub Actions</span><span class="tag">Docker</span><span class="tag">ECR</span>
+            <span class="tag">EKS</span><span class="tag">Blue/Green</span>
+          </div>
+        </div>
+
+        <div class="proj-card fade-up">
+          <div class="proj-top">
+            <div class="proj-ico"><i class="fas fa-layer-group"></i></div>
+            <a href="https://github.com/suguslove10" target="_blank" class="proj-gh-link"><i class="fab fa-github"></i></a>
+          </div>
+          <h3 class="proj-title">AWS Multi-Env Infrastructure as Code</h3>
+          <div class="proj-problem">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span><strong>Problem:</strong> Dev, staging, and prod were snowflake environments — manually built, inconsistent, impossible to reproduce reliably.</span>
+          </div>
+          <p class="proj-desc">Designed reusable Terraform modules for VPC, EC2, RDS, IAM, ACM, and Route53. Remote state via S3 + DynamoDB locking, workspace-based environment separation, and Atlantis for PR-driven plan/apply approval workflow.</p>
+          <div class="proj-outcome">
+            <i class="fas fa-check-double"></i>
+            <span>100% reproducible environments · 70% faster provisioning · Drift detection</span>
+          </div>
+          <div class="proj-tags">
+            <span class="tag">Terraform</span><span class="tag">VPC</span><span class="tag">IAM</span>
+            <span class="tag">Route53</span><span class="tag">Atlantis</span><span class="tag">S3 State</span>
+          </div>
+        </div>
+
+        <div class="proj-card fade-up">
+          <div class="proj-top">
+            <div class="proj-ico"><i class="fas fa-chart-bar"></i></div>
+            <a href="https://github.com/suguslove10" target="_blank" class="proj-gh-link"><i class="fab fa-github"></i></a>
+          </div>
+          <h3 class="proj-title">Full-Stack Observability Platform</h3>
+          <div class="proj-problem">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span><strong>Problem:</strong> Kubernetes cluster running blind — no metrics, no alerts, no dashboards. Issues discovered by users before ops team.</span>
+          </div>
+          <p class="proj-desc">Deployed kube-prometheus-stack via Helm on EKS. Custom Grafana dashboards for cluster health, pod resource usage, network I/O, and SLO tracking. AlertManager with PagerDuty escalation policies and runbook links embedded in alerts.</p>
+          <div class="proj-outcome">
+            <i class="fas fa-shield-halved"></i>
+            <span>MTTR: 45 min → 8 min · 15+ alert rules · SLO dashboards live</span>
+          </div>
+          <div class="proj-tags">
+            <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">AlertManager</span>
+            <span class="tag">Helm</span><span class="tag">SLO/SLA</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SANDBOX TERMINAL ═══════════════════ -->
+  <section class="section section-grid" id="sandbox">
+    <div class="container">
+      <div class="sec-label fade-up">// terminal.sandbox</div>
+      <h2 class="sec-title fade-up">Interactive Terminal</h2>
+      <p class="sec-sub fade-up">
+        A live DevOps playground. Type commands to explore my stack, projects, and credentials —
+        or just try <kbd>sudo hire sugu</kbd>.
+      </p>
+
+      <div class="sandbox-wrap fade-up">
+        <div class="sb-hints">
+          <button class="sb-hint" onclick="sbFill('help')"><i class="fas fa-terminal"></i> help</button>
+          <button class="sb-hint" onclick="sbFill('kubectl get pods')">kubectl get pods</button>
+          <button class="sb-hint" onclick="sbFill('terraform plan')">terraform plan</button>
+          <button class="sb-hint" onclick="sbFill('docker ps')">docker ps</button>
+          <button class="sb-hint" onclick="sbFill('git log --oneline')">git log</button>
+          <button class="sb-hint" onclick="sbFill('neofetch')">neofetch</button>
+          <button class="sb-hint" onclick="sbFill('aws s3 ls')">aws s3 ls</button>
+          <button class="sb-hint sb-hint-special" onclick="sbFill('sudo hire sugu')">sudo hire sugu 👀</button>
+        </div>
+
+        <div class="sandbox-term">
+          <div class="sb-bar">
+            <span class="tb-dot" style="background:#ff5f57"></span>
+            <span class="tb-dot" style="background:#febc2e"></span>
+            <span class="tb-dot" style="background:#28c840"></span>
+            <span class="sb-bar-title">
+              <i class="fas fa-cloud" style="color:#00b4ff;font-size:11px"></i>
+              &nbsp;sugu@aws-cloud:~
+            </span>
+            <span class="sb-bar-right">EKS: us-east-1 &nbsp;|&nbsp; K8s: v1.28.5</span>
+          </div>
+          <div class="sb-output" id="sbOutput"></div>
+          <div class="sb-input-row">
+            <span class="sb-prompt-label">sugu@cloud:~$</span>
+            <input
+              type="text"
+              id="sbInput"
+              class="sb-input"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Terminal input"
+              placeholder="type a command and press Enter..."
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CERTIFICATIONS ═══════════════════ -->
+  <section class="section section-grid" id="certs">
+    <div class="container">
+      <div class="sec-label fade-up">// credentials</div>
+      <h2 class="sec-title fade-up">Certifications</h2>
+
+      <div class="certs-grid">
+
+        <div class="cert-card fade-up">
+          <div class="cert-ico cert-aws">
+            <i class="devicon-amazonwebservices-original"></i>
+          </div>
+          <div class="cert-body">
+            <h3 class="cert-name">AWS Partner Technical Accredited</h3>
+            <p class="cert-org">Amazon Web Services</p>
+            <p class="cert-yr">2024</p>
+          </div>
+          <span class="cert-badge">✓ Verified</span>
+        </div>
+
+        <div class="cert-card fade-up">
+          <div class="cert-ico cert-ibm">
+            <i class="fas fa-cube"></i>
+          </div>
+          <div class="cert-body">
+            <h3 class="cert-name">DevOps &amp; Software Engineering Fundamentals</h3>
+            <p class="cert-org">IBM / Coursera</p>
+            <p class="cert-yr">2023</p>
+          </div>
+          <span class="cert-badge">✓ Verified</span>
+        </div>
+
+        <div class="cert-card fade-up">
+          <div class="cert-ico cert-gcp">
+            <i class="devicon-googlecloud-plain colored"></i>
+          </div>
+          <div class="cert-body">
+            <h3 class="cert-name">Google Cloud Fundamentals: Core Infrastructure</h3>
+            <p class="cert-org">Google Cloud</p>
+            <p class="cert-yr">2023</p>
+          </div>
+          <span class="cert-badge">✓ Verified</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ JOURNEY ═══════════════════ -->
+  <section class="section" id="journey">
+    <div class="container">
+      <div class="sec-label fade-up">// journey.log</div>
+      <h2 class="sec-title fade-up">My Journey</h2>
+
+      <div class="timeline">
+
+        <div class="tl-item fade-up">
+          <div class="tl-dot tl-current"></div>
+          <div class="tl-card">
+            <div class="tl-date">May 2025 – Present</div>
+            <h3 class="tl-title">Associate Cloud &amp; DevOps Engineer</h3>
+            <p class="tl-org"><i class="fas fa-building"></i> Seabed2Crest</p>
+            <ul class="tl-list">
+              <li>Architecting and managing AWS infrastructure for production workloads</li>
+              <li>Building CI/CD pipelines with GitHub Actions + ArgoCD on EKS</li>
+              <li>Automating infrastructure provisioning with Terraform modules</li>
+              <li>Setting up full observability stack with Prometheus &amp; Grafana</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">AWS</span><span class="tag">EKS</span>
+              <span class="tag">Terraform</span><span class="tag">ArgoCD</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-date">2023</div>
+            <h3 class="tl-title">AWS Cloud Intern</h3>
+            <p class="tl-org"><i class="fas fa-building"></i> F13 Technologies</p>
+            <ul class="tl-list">
+              <li>Configured and automated AWS EC2, S3, and IAM resources</li>
+              <li>Built CI/CD pipelines using Jenkins and automated deployment scripts</li>
+              <li>Containerized applications using Docker and managed on EC2</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Jenkins</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item fade-up">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-date">2020 – 2024</div>
+            <h3 class="tl-title">B.E. Electronics &amp; Computer Engineering</h3>
+            <p class="tl-org"><i class="fas fa-graduation-cap"></i> Reva University, Bangalore</p>
+            <ul class="tl-list">
+              <li>Graduated with focus on computer systems and networking fundamentals</li>
+              <li>Self-studied cloud computing, Linux, and DevOps alongside coursework</li>
+              <li>Earned multiple cloud certifications during final year</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">Linux</span><span class="tag">Networking</span><span class="tag">Cloud</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT ═══════════════════ -->
+  <section class="section section-grid" id="contact">
+    <div class="container">
+      <div class="contact-wrap fade-up">
+        <div class="sec-label">// get.in.touch</div>
+        <h2 class="sec-title">Let's Build Something<br /><span class="gradient-text">Reliable Together</span></h2>
+        <p class="contact-sub">Open to full-time roles, contracts, and interesting infrastructure challenges.</p>
+        <div class="contact-cards">
+          <a href="mailto:suguresh@email.com" class="cc">
+            <div class="cc-ico"><i class="fas fa-envelope"></i></div>
+            <span class="cc-label">Email</span>
+            <small>suguresh@email.com</small>
+          </a>
+          <a href="https://github.com/suguslove10" target="_blank" class="cc">
+            <div class="cc-ico"><i class="fab fa-github"></i></div>
+            <span class="cc-label">GitHub</span>
+            <small>github.com/suguslove10</small>
+          </a>
+          <a href="#" target="_blank" class="cc">
+            <div class="cc-ico"><i class="fab fa-linkedin"></i></div>
+            <span class="cc-label">LinkedIn</span>
+            <small>Connect with me</small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="nav-logo">
+          <span class="lb">&lt;</span>Sugu<span class="lb">/&gt;</span>
+        </div>
+        <p class="footer-tag">Pure HTML · CSS · Vanilla JS — no frameworks, no excuses</p>
+        <p class="footer-copy">© 2025 Suguresh · Cloud &amp; DevOps Engineer</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="btt" id="btt" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
 </html>
