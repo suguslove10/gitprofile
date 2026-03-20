@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- ═══════════════════ NAVBAR ═══════════════════ -->
   <nav class="navbar" id="navbar">
@@ -50,7 +51,7 @@
         <li><a href="#journey" class="nav-link">Journey</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
-      <a href="#" class="btn-resume" id="navResume">Resume</a>
+      <a href="https://drive.google.com/file/d/1vr30-dAundtvU9ykW4uvwAUCieCAlPm4/view?usp=drivesdk" target="_blank" class="btn-resume" id="navResume">Resume</a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -81,14 +82,14 @@
           <a href="#projects" class="btn-primary">
             <i class="fas fa-terminal"></i> View My Work
           </a>
-          <a href="#" class="btn-secondary" id="resumeDownload">
+          <a href="https://drive.google.com/file/d/1vr30-dAundtvU9ykW4uvwAUCieCAlPm4/view?usp=drivesdk" target="_blank" class="btn-secondary" id="resumeDownload">
             <i class="fas fa-file-arrow-down"></i> Download Resume
           </a>
         </div>
         <div class="hero-stats">
           <div class="stat">
-            <div class="stat-num"><span data-target="10">0</span>+</div>
-            <div class="stat-label">Projects</div>
+            <div class="stat-num"><span id="ghRepos" data-target="10">0</span>+</div>
+            <div class="stat-label">GitHub Repos</div>
           </div>
           <div class="stat-sep"></div>
           <div class="stat">
@@ -97,8 +98,8 @@
           </div>
           <div class="stat-sep"></div>
           <div class="stat">
-            <div class="stat-num"><span data-target="1">0</span>+</div>
-            <div class="stat-label">Years Exp</div>
+            <div class="stat-num"><span id="ghFollowers" data-target="0">0</span></div>
+            <div class="stat-label">Followers</div>
           </div>
         </div>
       </div>
@@ -135,10 +136,10 @@
             <a href="https://github.com/suguslove10" target="_blank" class="pill">
               <i class="fab fa-github"></i> GitHub
             </a>
-            <a href="#" target="_blank" class="pill">
+            <a href="https://www.linkedin.com/in/suguresh/" target="_blank" class="pill">
               <i class="fab fa-linkedin"></i> LinkedIn
             </a>
-            <a href="mailto:suguresh@email.com" class="pill">
+            <a href="mailto:sugugalag@gmail.com" class="pill">
               <i class="fas fa-envelope"></i> Email
             </a>
           </div>
@@ -240,6 +241,97 @@
             <div class="chip" data-tip="Bash Scripting"><i class="fas fa-dollar-sign" style="color:#4eaa25"></i><span>Bash</span></div>
             <div class="chip" data-tip="Linux Systems"><i class="devicon-linux-plain" style="color:#e8f0fe"></i><span>Linux</span></div>
             <div class="chip" data-tip="Git Version Control"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ARCHITECTURE DIAGRAM ═══════════════════ -->
+  <section class="section" id="architecture">
+    <div class="container">
+      <div class="sec-label fade-up">// system.architecture</div>
+      <h2 class="sec-title fade-up">How It All Connects</h2>
+      <p class="sec-sub fade-up">A live map of the infrastructure patterns I design, build, and operate daily.</p>
+
+      <div class="arch-wrap">
+
+        <!-- CI/CD Pipeline -->
+        <div class="arch-row fade-up">
+          <div class="arch-tag">CI / CD</div>
+          <div class="arch-flow">
+            <div class="arch-node">
+              <i class="fab fa-github"></i> GitHub Repo
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">push</span></div>
+            <div class="arch-node">
+              <i class="fas fa-cogs"></i> GitHub Actions
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">build</span></div>
+            <div class="arch-node">
+              <i class="devicon-docker-plain colored"></i> Docker / ECR
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">sync</span></div>
+            <div class="arch-node arch-node-accent">
+              <i class="fas fa-circle-nodes"></i> ArgoCD
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">deploy</span></div>
+            <div class="arch-node arch-node-primary">
+              <i class="fas fa-dharmachakra"></i> EKS
+            </div>
+          </div>
+        </div>
+
+        <!-- Infrastructure -->
+        <div class="arch-row fade-up">
+          <div class="arch-tag">Infra</div>
+          <div class="arch-flow">
+            <div class="arch-node">
+              <i class="devicon-terraform-plain colored"></i> Terraform
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">provision</span></div>
+            <div class="arch-node">
+              <i class="fas fa-network-wired" style="color:#ff9900"></i> VPC / Subnets
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">route</span></div>
+            <div class="arch-node">
+              <i class="fas fa-route" style="color:#ff9900"></i> Route53 / ALB
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">traffic</span></div>
+            <div class="arch-node arch-node-primary">
+              <i class="fas fa-dharmachakra"></i> EKS Cluster
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">persist</span></div>
+            <div class="arch-node">
+              <i class="fas fa-database" style="color:#3f8624"></i> RDS / S3
+            </div>
+          </div>
+        </div>
+
+        <!-- Observability -->
+        <div class="arch-row fade-up">
+          <div class="arch-tag">Observability</div>
+          <div class="arch-flow">
+            <div class="arch-node arch-node-primary">
+              <i class="fas fa-dharmachakra"></i> EKS Metrics
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">scrape</span></div>
+            <div class="arch-node">
+              <i class="fas fa-fire" style="color:#e6522c"></i> Prometheus
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">visualise</span></div>
+            <div class="arch-node">
+              <i class="fas fa-chart-bar" style="color:#f46800"></i> Grafana
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">alert</span></div>
+            <div class="arch-node">
+              <i class="fas fa-bell" style="color:#e6522c"></i> AlertManager
+            </div>
+            <div class="arch-arrow"><span class="arch-label-arrow">page</span></div>
+            <div class="arch-node">
+              <i class="fas fa-pager" style="color:#06ac38"></i> PagerDuty
+            </div>
           </div>
         </div>
 
@@ -514,22 +606,33 @@
       <div class="contact-wrap fade-up">
         <div class="sec-label">// get.in.touch</div>
         <h2 class="sec-title">Let's Build Something<br /><span class="gradient-text">Reliable Together</span></h2>
-        <p class="contact-sub">Open to full-time roles, contracts, and interesting infrastructure challenges.</p>
+        <div class="avail-widget">
+          <div class="avail-status">
+            <span class="avail-dot-big"></span>
+            Available for full-time &amp; contract roles
+          </div>
+          <div class="avail-meta">
+            <span><i class="fas fa-bolt"></i> Response &lt; 24h</span>
+            <span><i class="fas fa-earth-asia"></i> Remote / Hybrid / Bangalore</span>
+            <span><i class="fas fa-clock"></i> IST (UTC+5:30)</span>
+          </div>
+        </div>
         <div class="contact-cards">
-          <a href="mailto:suguresh@email.com" class="cc">
+          <div class="cc" id="copyEmailCard" data-copy="sugugalag@gmail.com" style="cursor:pointer">
             <div class="cc-ico"><i class="fas fa-envelope"></i></div>
             <span class="cc-label">Email</span>
-            <small>suguresh@email.com</small>
-          </a>
+            <small>sugugalag@gmail.com</small>
+            <span class="copy-hint" id="copyHint"><i class="fas fa-copy"></i> copy</span>
+          </div>
           <a href="https://github.com/suguslove10" target="_blank" class="cc">
             <div class="cc-ico"><i class="fab fa-github"></i></div>
             <span class="cc-label">GitHub</span>
             <small>github.com/suguslove10</small>
           </a>
-          <a href="#" target="_blank" class="cc">
+          <a href="https://www.linkedin.com/in/suguresh/" target="_blank" class="cc">
             <div class="cc-ico"><i class="fab fa-linkedin"></i></div>
             <span class="cc-label">LinkedIn</span>
-            <small>Connect with me</small>
+            <small>linkedin.com/in/suguresh</small>
           </a>
         </div>
       </div>
@@ -544,7 +647,7 @@
           <span class="lb">&lt;</span>Sugu<span class="lb">/&gt;</span>
         </div>
         <p class="footer-tag">Pure HTML · CSS · Vanilla JS — no frameworks, no excuses</p>
-        <p class="footer-copy">© 2025 Suguresh · Cloud &amp; DevOps Engineer</p>
+        <p class="footer-copy">© <span id="footerYear">2025</span> Suguresh · Cloud &amp; DevOps Engineer</p>
       </div>
     </div>
   </footer>

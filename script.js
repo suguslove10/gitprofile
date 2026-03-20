@@ -1,4 +1,140 @@
 /* ══════════════════════════════════════════════════
+   PAGE ENTRANCE — fade in on load
+══════════════════════════════════════════════════ */
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
+  const yr = document.getElementById('footerYear');
+  if (yr) yr.textContent = new Date().getFullYear();
+});
+
+
+/* ══════════════════════════════════════════════════
+   SMART NAVBAR — hide on scroll-down, show on scroll-up
+══════════════════════════════════════════════════ */
+(function initSmartNav() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  let lastY   = 0;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    requestAnimationFrame(() => {
+      const currentY = window.scrollY;
+      // Scrolling down AND past the hero fold — hide
+      if (currentY > lastY && currentY > 200) {
+        navbar.classList.add('hidden');
+      } else {
+        navbar.classList.remove('hidden');
+      }
+      // Scrolled-style on any scroll past 60px
+      navbar.classList.toggle('scrolled', currentY > 60);
+      lastY   = currentY;
+      ticking = false;
+    });
+    ticking = true;
+  }, { passive: true });
+})();
+
+
+/* ══════════════════════════════════════════════════
+   SCROLL PROGRESS BAR
+══════════════════════════════════════════════════ */
+(function initScrollProgress() {
+  const bar = document.getElementById('scrollProgress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+
+
+/* ══════════════════════════════════════════════════
+   GITHUB LIVE STATS
+══════════════════════════════════════════════════ */
+(function fetchGitHubStats() {
+  const reposEl     = document.getElementById('ghRepos');
+  const followersEl = document.getElementById('ghFollowers');
+  if (!reposEl && !followersEl) return;
+
+  fetch('https://api.github.com/users/suguslove10')
+    .then(r => r.json())
+    .then(data => {
+      if (data.public_repos !== undefined && reposEl) {
+        const target = data.public_repos;
+        reposEl.dataset.target = target;
+        // Animate from current value
+        let cur = 0;
+        const step = target / (1200 / 16);
+        const t = setInterval(() => {
+          cur += step;
+          if (cur >= target) { reposEl.textContent = target; clearInterval(t); }
+          else reposEl.textContent = Math.floor(cur);
+        }, 16);
+      }
+      if (data.followers !== undefined && followersEl) {
+        const target = data.followers;
+        followersEl.dataset.target = target;
+        let cur = 0;
+        const step = Math.max(target / (1200 / 16), 0.5);
+        const t = setInterval(() => {
+          cur += step;
+          if (cur >= target) { followersEl.textContent = target; clearInterval(t); }
+          else followersEl.textContent = Math.floor(cur);
+        }, 16);
+      }
+    })
+    .catch(() => {
+      // Silently fallback — static values stay
+    });
+})();
+
+
+/* ══════════════════════════════════════════════════
+   COPY TO CLIPBOARD — contact email
+══════════════════════════════════════════════════ */
+(function initCopyEmail() {
+  const card = document.getElementById('copyEmailCard');
+  if (!card) return;
+  card.addEventListener('click', () => {
+    const text = card.dataset.copy;
+    navigator.clipboard.writeText(text).then(() => {
+      const hint = document.getElementById('copyHint');
+      if (hint) {
+        hint.innerHTML = '<i class="fas fa-check"></i> copied!';
+        hint.classList.add('copied');
+        setTimeout(() => {
+          hint.innerHTML = '<i class="fas fa-copy"></i> copy';
+          hint.classList.remove('copied');
+        }, 2000);
+      }
+    }).catch(() => {
+      window.location.href = 'mailto:' + text;
+    });
+  });
+})();
+
+
+/* ══════════════════════════════════════════════════
+   KEYBOARD SHORTCUT — press T to jump to terminal
+══════════════════════════════════════════════════ */
+document.addEventListener('keydown', e => {
+  // Only when not typing in an input
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 't' || e.key === 'T') {
+    const sbInput = document.getElementById('sbInput');
+    const sandbox = document.getElementById('sandbox');
+    if (sbInput && sandbox) {
+      sandbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => sbInput.focus(), 600);
+    }
+  }
+});
+
+
+/* ══════════════════════════════════════════════════
    PARTICLE CANVAS — Network Topology Animation
 ══════════════════════════════════════════════════ */
 (function initCanvas() {
@@ -121,21 +257,16 @@
 
 
 /* ══════════════════════════════════════════════════
-   NAVBAR — Scroll Behaviour + Active Link
+   NAVBAR — Active Link Highlight
 ══════════════════════════════════════════════════ */
-(function initNavbar() {
-  const navbar = document.getElementById('navbar');
-  const links  = document.querySelectorAll('.nav-link');
+(function initActiveLink() {
+  const links    = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
 
   window.addEventListener('scroll', () => {
-    // Scrolled style
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-
-    // Active link
     let current = '';
     sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      if (window.scrollY >= s.offsetTop - 130) current = s.id;
     });
     links.forEach(l => {
       l.classList.toggle('active', l.getAttribute('href') === '#' + current);
@@ -329,7 +460,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         `<span class="sb-cyan">║</span>  <span class="sb-green">neofetch|uptime|top|ping|ls|cat|echo|date</span>            <span class="sb-cyan">║</span>`,
         `<span class="sb-cyan">║</span>                                                       <span class="sb-cyan">║</span>`,
         `<span class="sb-cyan">║</span>  <span class="sb-red">sudo hire sugu</span>    🔑 secret command                  <span class="sb-cyan">║</span>`,
-        `<span class="sb-cyan">║</span>  <span class="sb-dim">clear · history · exit · resume</span>                     <span class="sb-cyan">║</span>`,
+        `<span class="sb-cyan">║</span>  <span class="sb-green">status</span>            availability &amp; contact info          <span class="sb-cyan">║</span>`,
+        `<span class="sb-cyan">║</span>  <span class="sb-dim">clear · history · exit · resume · date</span>              <span class="sb-cyan">║</span>`,
         `<span class="sb-cyan">╚═══════════════════════════════════════════════════════╝</span>`,
         ``,
       ], 14);
@@ -499,9 +631,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     contact() {
       addLines([
         ``,
-        `  <span class="sb-blue">Email:</span>    suguresh@email.com`,
+        `  <span class="sb-blue">Email:</span>    sugugalag@gmail.com`,
         `  <span class="sb-blue">GitHub:</span>   github.com/suguslove10`,
-        `  <span class="sb-blue">LinkedIn:</span> linkedin.com/in/suguresh`,
+        `  <span class="sb-blue">LinkedIn:</span> linkedin.com/in/suguresh  <span class="sb-dim">← real link</span>`,
         ``,
         `  <span class="sb-green">Open to:</span>  Full-time · Contract · Interesting infra challenges`,
         ``,
@@ -885,7 +1017,14 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     },
 
     resume() {
-      addLines([``, `<span class="sb-blue">📄 Resume available on GitHub:</span>`, `   <span class="sb-yellow">github.com/suguslove10</span>`, ``, `<span class="sb-dim">Or click "Download Resume" in the hero section.</span>`, ``], 22);
+      addLines([
+        ``,
+        `<span class="sb-blue">📄 Resume:</span>`,
+        `   <span class="sb-yellow">drive.google.com/file/d/1vr30-dAundtvU9ykW4uvwAUCieCAlPm4/view</span>`,
+        ``,
+        `<span class="sb-dim">Or click "Download Resume" in the hero section.</span>`,
+        ``,
+      ], 22);
     },
 
     clear() {
@@ -913,7 +1052,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           `<span class="sb-cyan">║</span>   Clearance:  <span class="sb-green">AWS · K8s · Terraform · CI/CD</span>       <span class="sb-cyan">║</span>`,
           `<span class="sb-cyan">║</span>   Status:     <span class="sb-green">Open to Work ●</span>                      <span class="sb-cyan">║</span>`,
           `<span class="sb-cyan">║</span>                                                  <span class="sb-cyan">║</span>`,
-          `<span class="sb-cyan">║</span>   → <span class="sb-yellow">suguresh@email.com</span>                          <span class="sb-cyan">║</span>`,
+          `<span class="sb-cyan">║</span>   → <span class="sb-yellow">sugugalag@gmail.com</span>                          <span class="sb-cyan">║</span>`,
           `<span class="sb-cyan">║</span>   → <span class="sb-yellow">github.com/suguslove10</span>                     <span class="sb-cyan">║</span>`,
           `<span class="sb-cyan">║</span>                                                  <span class="sb-cyan">║</span>`,
           `<span class="sb-cyan">╚══════════════════════════════════════════════════╝</span>`,
@@ -926,6 +1065,29 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       } else {
         addLines([``, `<span class="sb-red">sudo: ${esc(sub)}: command not found.</span>`, `<span class="sb-dim">Hint: try  sudo hire sugu</span>`, ``], 20);
       }
+    },
+
+    status() {
+      const now  = new Date();
+      const date = now.toUTCString();
+      addLines([
+        ``,
+        `<span class="sb-cyan">── Availability Status ──────────────────────────────────</span>`,
+        ``,
+        `  <span class="sb-green">● AVAILABLE</span>   Open for full-time &amp; contract roles`,
+        ``,
+        `  <span class="sb-blue">Role:</span>         Cloud &amp; DevOps Engineer`,
+        `  <span class="sb-blue">Location:</span>     Bangalore, India`,
+        `  <span class="sb-blue">Mode:</span>         Remote / Hybrid preferred`,
+        `  <span class="sb-blue">Timezone:</span>     IST (UTC+5:30)`,
+        `  <span class="sb-blue">Response:</span>     &lt; 24 hours`,
+        ``,
+        `  <span class="sb-blue">Timestamp:</span>    <span class="sb-dim">${date}</span>`,
+        ``,
+        `  <span class="sb-dim">Reach out:</span>  <span class="sb-yellow">sugugalag@gmail.com</span>`,
+        `  <span class="sb-dim">GitHub:</span>      <span class="sb-yellow">github.com/suguslove10</span>`,
+        ``,
+      ], 25);
     },
 
     exit() {
@@ -990,18 +1152,4 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 /* ══════════════════════════════════════════════════
    RESUME BUTTON PLACEHOLDER
 ══════════════════════════════════════════════════ */
-(function initResume() {
-  const url = '#'; // Replace with actual resume URL e.g. 'https://drive.google.com/...'
-  ['navResume', 'resumeDownload'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('click', e => {
-        if (url === '#') {
-          e.preventDefault();
-          // Show subtle alert — replace url variable with real link
-          alert('Resume link coming soon! Connect with me on LinkedIn.');
-        }
-      });
-    }
-  });
-})();
+// Resume links are live — no JS override needed.
