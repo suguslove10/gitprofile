@@ -721,6 +721,16 @@ img { max-width: 100%; display: block; }
   color: var(--text2);
   line-height: 1.75;
 }
+.proj-desc .proj-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dashed var(--accent);
+  transition: border-color .2s;
+}
+.proj-desc .proj-link:hover {
+  border-bottom-style: solid;
+}
 
 .proj-outcome {
   display: flex;

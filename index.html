@@ -414,21 +414,21 @@
         <div class="proj-card fade-up">
           <div class="proj-top">
             <div class="proj-ico"><i class="fas fa-chart-bar"></i></div>
-            <a href="https://github.com/suguslove10" target="_blank" class="proj-gh-link"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/suguslove10/homelab-monitoring-stack" target="_blank" class="proj-gh-link"><i class="fab fa-github"></i></a>
           </div>
-          <h3 class="proj-title">Full-Stack Observability Platform</h3>
+          <h3 class="proj-title">Full Observability Stack</h3>
           <div class="proj-problem">
             <i class="fas fa-triangle-exclamation"></i>
-            <span><strong>Problem:</strong> Kubernetes cluster running blind — no metrics, no alerts, no dashboards. Issues discovered by users before ops team.</span>
+            <span><strong>Problem:</strong> Kubernetes cluster running blind — no metrics, no logs, no alerts. Issues discovered by users before ops team, with zero visibility into cluster health.</span>
           </div>
-          <p class="proj-desc">Deployed kube-prometheus-stack via Helm on EKS. Custom Grafana dashboards for cluster health, pod resource usage, network I/O, and SLO tracking. AlertManager with PagerDuty escalation policies and runbook links embedded in alerts.</p>
+          <p class="proj-desc">Prometheus + Grafana + Loki + AlertManager deployed on self-hosted k3s via GitOps (ArgoCD). Production-grade dashboards for Kubernetes API server, etcd, CoreDNS, kubelet, networking, and compute resources across cluster/namespace/pod/workload/node levels. Live at <a href="https://grafana.thesugu.com" target="_blank" class="proj-link">grafana.thesugu.com</a>.</p>
           <div class="proj-outcome">
             <i class="fas fa-shield-halved"></i>
-            <span>MTTR: 45 min → 8 min · 15+ alert rules · SLO dashboards live</span>
+            <span>20+ dashboards live · Full cluster observability · GitOps-driven deployment</span>
           </div>
           <div class="proj-tags">
-            <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">AlertManager</span>
-            <span class="tag">Helm</span><span class="tag">SLO/SLA</span>
+            <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Loki</span>
+            <span class="tag">AlertManager</span><span class="tag">ArgoCD</span><span class="tag">k3s</span>
           </div>
         </div>
 
